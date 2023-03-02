@@ -1,8 +1,13 @@
 # Java CheatSheet
 
+### ***Note: I've left all original lab content "as-is" on the main branch and provide my solutions on the branch titled "working".***
+
 ```Java
 Copyright (c)2023 Promineo Tech
 Promineo Tech Academic Team
+
+All additional content, present on the "working" branch (including original java code and additional comments)
+is Copyright (c)2023 Justin Turner, a.k.a. ProjectGrantwood.
 ```
 
 ## Variable Declaration
