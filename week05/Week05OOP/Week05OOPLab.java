@@ -4,11 +4,12 @@
 // Subject:  Object Oriented Programming
 // Java Week 05 Lab  
 //
-package week05;
+package week05.Week05OOP;
 
 
 
-
+import java.util.*;
+import java.util.Iterator;
 
 
 public class Week05OOPLab {
@@ -50,10 +51,13 @@ public class Week05OOPLab {
 		System.out.println("\nQuestion 1: Card Class");
 		// Add your code here to instantiate a Card
 		
+		Card aceOfSpades = new Card();
+		aceOfSpades.setNameAndValue(14);
+		aceOfSpades.setSuit("Spades");
 		
 		// Call the describe method on the newly instantiated card.
 		
-		
+		aceOfSpades.describe();
 		
 		
 
@@ -73,9 +77,11 @@ public class Week05OOPLab {
 		System.out.println("\nQuestion 2: Deck Class");
 	    // Add your code here to instantiate a Deck	
 	    
+		Deck myDeck = new Deck();
 	    
 	    // Call the describe method on the newly instantiated deck.
 	    
+		myDeck.describe();
 	    
 	    
 	    
@@ -86,19 +92,20 @@ public class Week05OOPLab {
 		System.out.println("\nQuestion 3: Deck shuffle() method");
 		// Test your method here
 		
+		myDeck.shuffle();
 		
 		
 		// Call the describe method on the newly shuffled deck.
 
-		
-		
+		myDeck.describe();
 		
 		// 4. Deck draw() Method:
 		//		Add a draw method within the Deck Class
 		System.out.println("\nQuestion 4: Deck draw() method");
 		// Test your method here
 		
-		
+		Card nextCard = myDeck.draw();
+		nextCard.describe();
 		
 		
 		
@@ -116,6 +123,7 @@ public class Week05OOPLab {
 		System.out.println("\nQuestion 5: Create Game");
 		// Call your method here
 
+		Map<String, List<Card>> game = startGame(8);
 		
 		
 		
@@ -127,8 +135,24 @@ public class Week05OOPLab {
 	
 	// Method 5:
 	
-	
-	
+	public static Map<String, List<Card>> startGame(int numPlayers) {
+		Deck deck = new Deck();
+		deck.shuffle();
+		Map<String, List<Card>> players = new HashMap<String, List<Card>>();
+		for (int i = 1; i <= numPlayers; i++){
+				players.put("Player " + i, new ArrayList<Card>());
+			}
+		Iterator<Card> dealingIterator = deck.cards.iterator();
+		int i = 4;
+		while (dealingIterator.hasNext()) {
+			String key = "Player " + i % 4;
+			List<Card> currentPlayer = players.get(key);
+			currentPlayer.add(dealingIterator.next());
+			players.put(key, currentPlayer);
+			i++;
+		}
+		return players;
+	}
 	
 
 }
